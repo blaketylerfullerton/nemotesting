@@ -1,0 +1,30 @@
+general:
+  use_uvloop: true
+  logging:
+    console:
+      _type: console
+      level: WARN
+
+  # Choose one front_end type only — e.g., console or fastapi
+  front_end:
+    _type: console
+
+llms:
+  nim_llm:
+    _type: nim
+    model_name: meta/llama-3.1-70b-instruct
+    temperature: 0.0
+
+functions:
+  blakes_bot:
+    _type: blakes_bot
+    tool_name: []
+    llm_name: nim_llm
+    max_history: 10
+
+workflow:
+  _type: blakes_bot
+  tool_names: []
+  llm_name: nim_llm
+  max_history: 10
+  description: "Gets Blake's favorite food"

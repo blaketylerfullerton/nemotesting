@@ -1,0 +1,10 @@
+pyproject.toml
+src/blakes_bot/__init__.py
+src/blakes_bot/blakes_bot_function.py
+src/blakes_bot/register.py
+src/blakes_bot.egg-info/PKG-INFO
+src/blakes_bot.egg-info/SOURCES.txt
+src/blakes_bot.egg-info/dependency_links.txt
+src/blakes_bot.egg-info/entry_points.txt
+src/blakes_bot.egg-info/requires.txt
+src/blakes_bot.egg-info/top_level.txt

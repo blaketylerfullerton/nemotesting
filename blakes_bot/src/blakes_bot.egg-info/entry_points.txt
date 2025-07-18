@@ -1,0 +1,2 @@
+[aiq.components]
+blakes_bot = blakes_bot.register
