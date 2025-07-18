@@ -24,40 +24,12 @@ class BlakesBotFunctionConfig(FunctionBaseConfig, name="blakes_bot"):
 async def blakes_bot_function(
     config: BlakesBotFunctionConfig, builder: Builder
 ):
-    # Implement your function logic here
-    from langchain import hub
-    from langchain.agents import AgentExecutor, create_react_agent
-    from langchain.schema import BaseMessage
-    from langchain_core.messages import trim_messages
+    # Simple function that returns Blake's favorite food
     from aiq.data_models.api_server import AIQChatRequest
     from aiq.data_models.api_server import AIQChatResponse
 
-
-    tools = builder.get_tools(tool_names=config.tool_name, wrapper_type=LLMFrameworkEnum.LANGCHAIN)
-    llm =  await builder.get_llm(llm_name=config.llm_name, wrapper_type=LLMFrameworkEnum.LANGCHAIN)
-    prompt = hub.pull("gborotto/react-chat")
-    print("PROMPT", prompt)
-    agent = create_react_agent(
-        llm=llm,
-        prompt=prompt,
-        tools=tools,
-    )
-    agent_executor = AgentExecutor(agent=agent, tools=tools,  handle_parsing_errors=True, verbose=True, return_intermediate_steps=True)
-
-
     async def _response_fn(input_message: AIQChatRequest) -> AIQChatResponse:
-
-        last_message = input_message.messages[-1].content
-        chat_history = trim_messages(messages=[m.model_dump() for m in input_message.messages], 
-                                     max_tokens=config.max_history,
-                                     strategy="last",
-                                     start_on = "human",
-                                     include_system = True,
-                                     token_counter= len
-                                     )
-        response =  agent_executor.invoke({"input": last_message, "chat_history": chat_history})
-        print("RESPONSE", response)
-        return AIQChatResponse.from_string(response["output"])
+        return AIQChatResponse.from_string("Blake's favorite food is spagetti tacos!")
 
     try:
         yield FunctionInfo.create(single_fn=_response_fn)
