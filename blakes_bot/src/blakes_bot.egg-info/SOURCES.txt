@@ -1,4 +1,6 @@
 pyproject.toml
+uv.lock
+configs/config.yml
 src/blakes_bot/__init__.py
 src/blakes_bot/blakes_bot_function.py
 src/blakes_bot/register.py
@@ -8,3 +10,7 @@ src/blakes_bot.egg-info/dependency_links.txt
 src/blakes_bot.egg-info/entry_points.txt
 src/blakes_bot.egg-info/requires.txt
 src/blakes_bot.egg-info/top_level.txt
+src/blakes_bot/__pycache__/__init__.cpython-311.pyc
+src/blakes_bot/__pycache__/blakes_bot_function.cpython-311.pyc
+src/blakes_bot/__pycache__/register.cpython-311.pyc
+src/blakes_bot/configs/config.yml

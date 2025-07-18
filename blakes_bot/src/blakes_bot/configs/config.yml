@@ -5,10 +5,6 @@ general:
       _type: console
       level: WARN
 
-  # Choose one front_end type only — e.g., console or fastapi
-  front_end:
-    _type: console
-
 llms:
   nim_llm:
     _type: nim
@@ -16,15 +12,17 @@ llms:
     temperature: 0.0
 
 functions:
+  # Define the main agent function
   blakes_bot:
     _type: blakes_bot
-    tool_name: []
     llm_name: nim_llm
     max_history: 10
+    description: "A math assistant that can subtract numbers and remember results"
+    verbose: true
 
 workflow:
   _type: blakes_bot
-  tool_names: []
   llm_name: nim_llm
+  verbose: true
   max_history: 10
-  description: "Gets Blake's favorite food"
+  description: "A math assistant that can subtract numbers and remember results"
