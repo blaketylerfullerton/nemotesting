@@ -17,7 +17,7 @@ functions:
     _type: blakes_bot
     llm_name: nim_llm
     max_history: 10
-    description: "A math assistant that can subtract numbers and remember results"
+    description: "A math assistant that can subtract numbers and remember results, and generate random numbers"
     verbose: true
 
 workflow:
@@ -25,4 +25,4 @@ workflow:
   llm_name: nim_llm
   verbose: true
   max_history: 10
-  description: "A math assistant that can subtract numbers and remember results"
+  description: "A math assistant that can subtract numbers and remember results, and generate random numbers"

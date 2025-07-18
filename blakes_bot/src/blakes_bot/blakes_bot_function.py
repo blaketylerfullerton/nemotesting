@@ -1,4 +1,5 @@
 import logging
+import random
 
 from pydantic import Field
 
@@ -63,11 +64,48 @@ async def blakes_bot_function(
             return f"The last subtraction result is: {result}"
         return "No previous subtraction result found. The current result is 0."
 
+    @tool
+    def generate_random_number(min_value: int = 1, max_value: int = 100000) -> str:
+        """Generate a random number within the specified range.
+        
+        Args:
+            min_value: The minimum value (inclusive). Defaults to 1.
+            max_value: The maximum value (inclusive). Defaults to 100000.
+            
+        Returns:
+            A string describing the generated random number
+        """
+        if min_value > max_value:
+            return f"Error: min_value ({min_value}) cannot be greater than max_value ({max_value})"
+        
+        random_num = random.randint(min_value, max_value)
+        return f"Generated random number: {random_num} (range: {min_value} to {max_value})"
+
+    @tool
+    def random_and_subtract(min_value: int = 1, max_value: int = 100) -> str:
+        """Generate a random number and subtract it from the stored result.
+        
+        Args:
+            min_value: The minimum value for random generation (inclusive). Defaults to 1.
+            max_value: The maximum value for random generation (inclusive). Defaults to 100.
+            
+        Returns:
+            A string describing the operation and new result
+        """
+        if min_value > max_value:
+            return f"Error: min_value ({min_value}) cannot be greater than max_value ({max_value})"
+        
+        random_num = random.randint(min_value, max_value)
+        previous_result = _previous_results.get("result", 0)
+        new_result = previous_result - random_num
+        _previous_results["result"] = new_result
+        return f"Generated random number {random_num} and subtracted it from {previous_result}, got {new_result}. New result stored: {new_result}"
+
     # Get the LLM
     llm = await builder.get_llm(config.llm_name, wrapper_type=LLMFrameworkEnum.LANGCHAIN)
     
-    # Create list of tools
-    tools = [subtract_and_remember, get_last_subtraction]
+    # Create list of tools - added the new random number tools
+    tools = [subtract_and_remember, get_last_subtraction, generate_random_number, random_and_subtract]
 
     # Bind tools to the LLM for tool calling
     try:
@@ -107,4 +145,3 @@ async def blakes_bot_function(
         print("Function exited early!")
     finally:
         print("Cleaning up blakes_bot workflow.")
-
