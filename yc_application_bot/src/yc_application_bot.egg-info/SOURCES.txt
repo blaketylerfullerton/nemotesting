@@ -1,0 +1,10 @@
+pyproject.toml
+src/yc_application_bot/__init__.py
+src/yc_application_bot/register.py
+src/yc_application_bot/yc_application_bot_function.py
+src/yc_application_bot.egg-info/PKG-INFO
+src/yc_application_bot.egg-info/SOURCES.txt
+src/yc_application_bot.egg-info/dependency_links.txt
+src/yc_application_bot.egg-info/entry_points.txt
+src/yc_application_bot.egg-info/requires.txt
+src/yc_application_bot.egg-info/top_level.txt

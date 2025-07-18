@@ -1,0 +1,28 @@
+general:
+  use_uvloop: true
+  logging:
+    console:
+      _type: console
+      level: WARN
+
+  front_end:
+    _type: console
+
+llms:
+  nim_llm:
+    _type: nim
+    model_name: meta/llama-3.1-70b-instruct
+    temperature: 0.0
+
+functions:
+  yc_application_bot:
+    _type: yc_application_bot
+    llm_name: nim_llm
+    max_history: 10
+    description: "A job application assistant that can apply for jobs"
+    verbose: true
+
+workflow:
+  _type: yc_application_bot
+  llm_name: nim_llm
+  verbose: true

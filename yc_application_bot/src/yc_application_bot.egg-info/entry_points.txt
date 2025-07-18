@@ -1,0 +1,2 @@
+[aiq.components]
+yc_application_bot = yc_application_bot.register
